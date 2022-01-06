@@ -34,7 +34,7 @@ const login = async (username, password) => {
     if (!verifyPassword(password, existingUser.salt, existingUser.hashed)) {
         throw new Error('Password is not correct!!!')
     }
-
+    
     return existingUser
 }
 

@@ -1,3 +1,4 @@
+const res = require('express/lib/response')
 const jwt = require('jsonwebtoken')
 const { db } = require('./database')
 
@@ -5,27 +6,23 @@ const createToken = user => {
     const accessToken = jwt.sign({
         username: user.username,
     },
-    process.env.SECRET_KEY,
-    {
-        expiresIn: 3600
-    }
+    process.env.SECRET_KEY
     )
     return accessToken
 }
 
-const validateToken = (req, res, next) => {
-    const accessToken = req.headers.authorization
-
+const validateToken = (req, res) => {
+    const accessToken = req.cookies['access-token']
+    console.log(accessToken);
+    console.log(req.cookies);
     if (!accessToken) {
         return res.status(400).json({
             Error: 'User not Authenticated!!!'
         })
     }
 
-    const jwtStr = accessToken.split(' ')[1]
-
     jwt.verify(
-        jwtStr,
+        accessToken,
         process.env.SECRET_KEY,
         async (err, decoded) => {
             if (err) {
@@ -35,10 +32,13 @@ const validateToken = (req, res, next) => {
                 const user = await db.users.findOne({
                     username: username
                 })
-
+                req.authenticated = true;
                 if (user) {
                     res.json({
-                        username: user.username
+                        username: user.username,
+                        _id: user._id,
+                        salt: user.salt,
+                        hashed: user.hashed
                     })
                 } else {
                     res.status(401).send('User not found!!!')
