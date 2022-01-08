@@ -1,7 +1,8 @@
 const express = require("express")
 const cors = require ("cors")
 const dotenv = require('dotenv')
-const authApi = require('./router/auth')
+const authRouter = require('./router/auth')
+const profileRouter = require('./router/profile')
 const cookieSession = require('cookie-session')
 const passport = require('passport')
 const cookieParser = require("cookie-parser");
@@ -13,6 +14,7 @@ const { connectToMongo } = require('./database')
 dotenv.config()
 
 const app = express()
+
 app.use(express.json())
 app.use(cookieParser());
 
@@ -31,8 +33,9 @@ app.use(cors({
     credentials: true
 }))
 
-
-app.use('/auth', authApi)
+app.use('/auth', authRouter)
+app.use('/profile', profileRouter)
+app.use('/profile', express.static('Images'), profileRouter)
 
 app.get('/', (req, res) => res.json('Welcome!!!'))
 
