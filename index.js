@@ -44,6 +44,8 @@ app.get('/', (req, res) => res.json('Welcome!!!'))
 
 connectToMongo()
 
-app.listen(process.env.PORT, () => {
-    console.log("App is running at 5000");
+const PORT = process.env.PORT
+
+app.listen(PORT, () => {
+    console.log(`App is running at ${PORT}`);
 })
