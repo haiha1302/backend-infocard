@@ -70,14 +70,22 @@ router.get('/login/failed', (req, res) => {
     })
 })
 
-router.get('/logout', (req, res) => {
-    req.logout()
-    res.status(200).clearCookie('access-token', {
-        path: '/',
-        secure: false,
+router.post('/logout', (req, res) => {
+    res.cookie('access-token', process.env.COOKIE_KEY, {
+        expires: new Date(Date.now() + 1000),
         httpOnly: true,
-        sameSite: true,
-      });
+    })
+    res
+        .status(200)
+        .json({ success: true, message: 'User logged out successfully' })
+
+    // req.logout()
+    // res.status(200).clearCookie('access-token', {
+    //     path: '/',
+    //     secure: false,
+    //     httpOnly: true,
+    //     sameSite: true,
+    //   });
     // res.redirect(process.env.TRUSTED_URL)
 })
 
