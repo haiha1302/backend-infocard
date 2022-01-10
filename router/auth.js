@@ -71,7 +71,7 @@ router.get('/login/failed', (req, res) => {
 })
 
 router.post('/logout', (req, res) => {
-    res.cookie('access-token', process.env.COOKIE_KEY, {
+    res.cookie('access-token', 'none', {
         expires: new Date(Date.now() + 1000),
         httpOnly: true,
     })
