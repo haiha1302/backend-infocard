@@ -74,10 +74,10 @@ router.get('/logout', (req, res) => {
     res.status(200).clearCookie('access-token', {
         path: '/',
         secure: false,
-        httpOnly: false,
+        httpOnly: true,
         sameSite: true,
       });
-    res.redirect(process.env.TRUSTED_URL)
+    // res.redirect(process.env.TRUSTED_URL)
 })
 
 // Login with Google
