@@ -31,7 +31,7 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 app.use(cors({
-    origin: ORIGINAL_URL,
+    origin: 'https://infocard-70df1.web.app/',
     methods: 'GET, POST, PUT, DELETE',
     credentials: true
 }))
