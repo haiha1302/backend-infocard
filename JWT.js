@@ -1,4 +1,3 @@
-const res = require('express/lib/response')
 const jwt = require('jsonwebtoken')
 const { db } = require('./database')
 

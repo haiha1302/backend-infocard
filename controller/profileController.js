@@ -1,6 +1,7 @@
 const { dbProfile } = require('../database')
 
 const getUserProfile = async (req, res) => {
+    console.log(req.body);
     const checkExistedProfile = await dbProfile.profiles.findOne({
         idUserMongo: req.params.idUser
     })

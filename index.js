@@ -13,6 +13,8 @@ const { connectToMongo } = require('./database')
 
 dotenv.config()
 
+const ORIGINAL_URL = process.env.TRUSTED_URL
+
 const app = express()
 
 app.use(express.json())
@@ -21,14 +23,15 @@ app.use(cookieParser());
 app.use(cookieSession({
     name: 'access-token',
     keys: [process.env.COOKIE_KEY],
-    maxAge: 24 * 60 * 60 * 1000
+    maxAge: 24 * 60 * 60 * 1000,
+    httpOnly: true
 }))
 
 app.use(passport.initialize())
 app.use(passport.session())
 
 app.use(cors({
-    origin: 'http://localhost:3000',
+    origin: ORIGINAL_URL,
     methods: 'GET, POST, PUT, DELETE',
     credentials: true
 }))

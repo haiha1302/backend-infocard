@@ -75,10 +75,9 @@ router.get('/logout', (req, res) => {
         path: '/',
         secure: false,
         httpOnly: false,
-        // domain: 'place.your.domain.name.here.com',
         sameSite: true,
       });
-    res.redirect('http://localhost:3000')
+    res.redirect(process.env.TRUSTED_URL)
 })
 
 // Login with Google
