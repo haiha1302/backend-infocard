@@ -74,13 +74,15 @@ router.get('/login/failed', (req, res) => {
 router.post('/logout', (req, res) => {
     res.cookie('access-token', 'none', {
         expires: new Date(Date.now() + 1000),
-        httpOnly: true,
+        secure: true,
+        httpOnly: false,
+        sameSite: 'none'
     })
     res
         .status(200)
         .json({ success: true, message: 'User logged out successfully' })
 
-    req.logout()
+    // req.logout()
     // res.status(200).clearCookie('access-token', {
     //     path: '/',
     //     secure: false,
