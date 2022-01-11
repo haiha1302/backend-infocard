@@ -44,7 +44,7 @@ app.use(cors({
     origin: 'https://infocard-70df1.web.app',
     methods: 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
     credentials: true,
-    // exposedHeaders: ['Set-cookie']
+    exposedHeaders: ['Set-cookie']
 }))
 
 app.use('/auth', authRouter)
