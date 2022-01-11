@@ -73,7 +73,7 @@ router.get('/login/failed', (req, res) => {
 
 router.post('/logout', (req, res) => {
     res.cookie('access-token', 'none', {
-        expires: new Date(Date.now() + 5000),
+        expires: new Date(Date.now() + 1000),
         secure: true,
         httpOnly: false,
         sameSite: 'none'
