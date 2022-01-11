@@ -55,6 +55,7 @@ router.get('/login/success', validateToken, (req, res) => {
 })
 
 router.get('/login/oauth', (req, res) => {
+    console.log(req.body);
     if (req.user) {
         res.status(200).json({
             success: true,
