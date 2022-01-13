@@ -43,8 +43,8 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 app.use(cors({
-    origin: 'https://infocard-70df1.web.app',
-    // origin: '*',
+    // origin: 'https://infocard-70df1.web.app',
+    origin: 'http://localhost:3000',
     methods: 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
     credentials: true,
     exposedHeaders: ['Set-cookie']
