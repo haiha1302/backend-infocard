@@ -43,8 +43,8 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 app.use(cors({
-    // origin: 'https://infocard-70df1.web.app',
-    origin: 'http://localhost:3000',
+    origin: 'https://infocard-70df1.web.app',
+    // origin: 'http://localhost:3000',
     methods: 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
     credentials: true,
     exposedHeaders: ['Set-cookie']
@@ -58,7 +58,7 @@ app.get('/', (req, res) => res.json('Welcome!!!'))
 
 connectToMongo()
 
-const PORT = process.env.PORT
+const PORT = process.env.PORT || 5000
 
 app.listen(PORT, () => {
     console.log(`App is running at ${PORT}`);
